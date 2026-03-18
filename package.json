@@ -1,0 +1,58 @@
+{
+  "name": "recipe-manager-app",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "migrate": "prisma migrate dev",
+    "seed": "prisma db seed",
+    "reset": "prisma migrate reset",
+    "db:setup": "./scripts/setup-db.sh",
+    "test:unit": "vitest run --project unit",
+    "test:components": "vitest run --project component",
+    "test:prepare": "npx playwright install --with-deps",
+    "test:e2e": "playwright test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "prisma": {
+    "seed": "node --loader ts-node/esm prisma/seed.ts"
+  },
+  "dependencies": {
+    "@emotion/css": "^11.13.5",
+    "@ionic/react": "^8.8.1",
+    "@ionic/react-router": "^8.8.1",
+    "@prisma/client": "^5.22.0",
+    "clsx": "^2.1.1",
+    "ionicons": "^8.0.13",
+    "next": "^16.1.7",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "sonner": "^2.0.7",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "eslint": "^10.0.3",
+    "eslint-config-next": "^16.0.0",
+    "happy-dom": "^17.2.2",
+    "jsdom": "^27.0.1",
+    "prisma": "^5.22.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "vitest": "^3.0.0"
+  }
+}

@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id      String   @id @default(uuid())
+  name    String
+  users   User[]
+  recipes Recipe[]
+}
+
+model User {
+  id       String       @id @default(uuid())
+  orgId    String
+  org      Organization @relation(fields: [orgId], references: [id])
+  username String
+  role     Role         @default(COOK)
+}
+
+enum Role {
+  CHEF
+  COOK
+}
+
+model Recipe {
+  id           String        @id @default(uuid())
+  orgId        String
+  org          Organization  @relation(fields: [orgId], references: [id])
+  title        String
+  yieldAmount  Float
+  yieldUnit    String
+  ingredients  Ingredient[]
+  instructions Instruction[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([orgId, title])
+}
+
+model Ingredient {
+  id        String @id @default(uuid())
+  recipeId  String
+  recipe    Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  name      String
+  amount    Float
+  unit      String
+  sortOrder Int
+}
+
+model Instruction {
+  id          String @id @default(uuid())
+  recipeId    String
+  recipe      Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  stepNumber  Int
+  description String
+}
+
+model Telemetry {
+  id        String   @id @default(uuid())
+  eventType String
+  orgId     String
+  latencyMs Int
+  userAgent String
+  createdAt DateTime @default(now())
+}
