@@ -20,3 +20,11 @@
 *   **Vitest:** "Business logic" and component unit tests. Basically just dummy tests to show how to do the thing.
 *   **Playwright:** E2E flows (Wizard, Search, Kitchen View). These simulate actual user workflows and include setup/teardown lifecycle. 
 *   **Bonus:** reuse E2E tests with Artillery framework for load/scalability testing if necessary in future. Workflow/Scenario-based E2E tests help to create scalability tests that approximate real user behaviors.
+
+## Alternatives Considered
+
+- Rust + Godot game engine (for fun!)
+- Golang backend + protobufs as single source of data model truth (for fun!)
+- AWS RDS and Vanilla SQL (for business!)
+
+Chosen stack was selected for a variety of reasons including rapid turnaround time. In production, might make some different choices altogethe after doing a proper trade study.
