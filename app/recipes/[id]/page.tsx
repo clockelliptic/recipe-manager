@@ -166,6 +166,26 @@ const instructionRowStyles = css`
   }
 `;
 
+const sectionRowStyles = css`
+  margin-left: -16px;
+  margin-right: -16px;
+
+  @media (max-width: 1024px) {
+    margin-left: 0;
+    margin-right: 0;
+    flex-direction: column;
+    gap: 32px;
+  }
+`;
+
+const sectionColStyles = css`
+  padding: 0 16px;
+
+  @media (max-width: 1024px) {
+    padding: 0;
+  }
+`;
+
 export default function KitchenView() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -257,8 +277,8 @@ export default function KitchenView() {
           </div>
 
           <IonGrid style={{ padding: 0 }}>
-            <IonRow style={{ gap: '32px', flexWrap: 'nowrap' }}>
-              <IonCol size="12" sizeLg="5" style={{ padding: 0 }}>
+            <IonRow className={sectionRowStyles}>
+              <IonCol size="12" sizeLg="5" className={sectionColStyles}>
                 <div className={sectionCardStyles}>
                   <h2>Ingredients</h2>
                   <div>
@@ -272,7 +292,7 @@ export default function KitchenView() {
                 </div>
               </IonCol>
 
-              <IonCol size="12" sizeLg="7" style={{ padding: 0 }}>
+              <IonCol size="12" sizeLg="7" className={sectionColStyles}>
                 <div className={sectionCardStyles}>
                   <h2>Instructions</h2>
                   <div>
